@@ -47,6 +47,6 @@ view: jupiter_api_responses {
 
   measure: count {
     type: count
-    drill_fields: [username]
+    drill_fields: [controller, action, username, http_code, transaction_group_id, timestamp_raw, duration]
   }
 }
