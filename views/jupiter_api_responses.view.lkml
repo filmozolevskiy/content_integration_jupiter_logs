@@ -1,5 +1,5 @@
 view: jupiter_api_responses {
-  sql_table_name: default.jupiter_api_responses ;;
+  sql_table_name: jupiter.jupiter_api_responses ;;
 
   dimension: action {
     type: string
