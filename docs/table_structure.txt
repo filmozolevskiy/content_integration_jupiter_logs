@@ -1,0 +1,12 @@
+CREATE TABLE jupiter.jupiter_api_logs
+(
+    `controller` String,
+    `action` String,
+    `username` String,
+    `http_code` UInt32,
+    `transaction_group_id` String,
+    `timestamp` DateTime,
+    `request` String,
+    `response` String
+)
+ENGINE = Distributed('ota', 'jupiter', 'jupiter_api_logs_shard', rand())

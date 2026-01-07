@@ -1,0 +1,82 @@
+---
+globs: "*.view.lkml"
+---
+# ClickHouse Database Patterns
+
+## Database Context
+This project uses ClickHouse as the data warehouse (connection: "ota_phoenix"). We have **read-only access**.
+
+## ClickHouse-Specific Functions
+
+### JSON Extraction
+Use ClickHouse JSON functions for parsing JSON columns:
+```lkml
+dimension: extracted_value {
+  sql: JSONExtractString(${TABLE}.json_column, 'key_name') ;;
+}
+```
+
+### String Functions
+- `upperUTF8()` - Convert to uppercase (UTF-8 aware)
+- `trim()` - Remove whitespace
+- `NULLIF()` - Return NULL if condition met
+
+### Type Casting
+```lkml
+sql: CONCAT(CAST(${field} AS VARCHAR), ' - ', ${other_field}) ;;
+```
+
+## Query Optimization for ClickHouse
+
+### Filtering Best Practices
+- Apply date filters early in derived tables
+- Use indexed columns when available (though we can't create indexes)
+- Filter before JOINs when possible
+
+### Example from Project
+```lkml
+derived_table: {
+  sql:
+    SELECT
+      date_added AS dayd,
+      -- other fields
+    FROM search_api_stats.gds_raw
+    WHERE
+      date_added > {% parameter start_date %}
+      AND ((api_user IN ('kayak', 'kayakapp') AND site_id = 1) 
+           OR api_user NOT IN ('kayak', 'kayakapp'))
+    ;;
+}
+```
+
+## Data Type Considerations
+- ClickHouse is column-oriented and optimized for analytical queries
+- Be mindful of data volume when creating derived tables
+- Use appropriate aggregations to reduce data size
+
+## Common Patterns
+
+### Date Filtering with Parameters
+```lkml
+parameter: start_date {
+  type: date
+  default_value: "2025-01-01"
+}
+
+derived_table: {
+  sql:
+    WHERE date_column > {% parameter start_date %}
+  ;;
+}
+```
+
+### IN Clause for Multiple Values
+```lkml
+WHEN ${TABLE}.field IN ('value1', 'value2', 'value3') THEN 'category'
+```
+
+## Performance Tips
+- Avoid SELECT * in production derived tables
+- Specify only needed columns
+- Use WHERE clauses to limit data scanned
+- Consider the impact of CASE statements on query performance

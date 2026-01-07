@@ -1,0 +1,113 @@
+---
+globs: "*.view.lkml"
+---
+# LookML View File Standards
+
+## File Organization
+Views should be organized in the following order with clear section comments:
+
+```lkml
+view: view_name {
+  # Parameters (if any)
+  parameter: param_name { }
+  
+  # Derived table (if applicable)
+  derived_table: { }
+  
+  # -------------------------
+  # Dimension groups / keys
+  # -------------------------
+  
+  # -------------------------
+  # Dimensions
+  # -------------------------
+  
+  # -------------------------
+  # Measures
+  # -------------------------
+}
+```
+
+## Dimension Standards
+
+### Primary Keys
+- Always mark the primary key dimension
+- Typically hide primary keys with `hidden: yes`
+
+```lkml
+dimension: search_id {
+  type: string
+  sql: ${TABLE}.search_id ;;
+  primary_key: yes
+  hidden: yes
+}
+```
+
+### Group Labels
+Use numbered group labels for logical organization:
+- "1. Time" - for temporal dimensions
+- "2. Content" - for content-related fields
+- "3. Search Source" - for search metadata
+- "4. Locations" - for geographic fields
+- "5. Results" - for response/outcome fields
+
+### Dimension Types
+- **String dimensions**: Include `suggestions` array when applicable
+- **Boolean dimensions**: Use `yesno` type, prefix with `is_`
+- **Time dimensions**: Use `dimension_group` with appropriate timeframes
+
+### CASE Statement Best Practices
+```lkml
+dimension: example {
+  sql:
+    CASE
+      WHEN ${condition1} THEN 'value1'
+      WHEN ${condition2} THEN 'value2'
+      ELSE 'default'
+    END ;;
+  suggestions: ["value1", "value2", "default"]
+}
+```
+
+## Measure Standards
+
+### Group Labels
+Organize measures by category:
+- "Volume" - for counts and totals
+- "Latency" - for performance metrics
+- "Health" - for error rates and success metrics
+
+### Value Formatting
+- Use `value_format: "0"` for whole numbers
+- Use `value_format: "0.00"` for decimals
+- Use `value_format_name: decimal_2` for standardized formats
+- Use `value_format_name: percent_2` for percentages
+
+### Filtered Measures
+```lkml
+measure: filtered_count {
+  type: count
+  filters: [dimension_name: "value"]
+  label: "Descriptive Label"
+  group_label: "Volume"
+}
+```
+
+### Ratio Calculations
+Always use `NULLIF` to prevent division by zero:
+```lkml
+measure: rate {
+  type: number
+  sql: ${numerator} / NULLIF(${denominator}, 0) ;;
+  value_format_name: percent_2
+}
+```
+
+## Hidden Dimensions
+Mark dimensions as hidden when they:
+- Are used only for calculations in other fields
+- Are intermediate helper dimensions
+- Should not be exposed to end users
+
+## Comments
+Use `#` for section headers and documentation within LookML files

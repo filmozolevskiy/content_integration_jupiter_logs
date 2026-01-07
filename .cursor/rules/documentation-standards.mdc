@@ -1,0 +1,56 @@
+---
+globs: "*.md"
+---
+# Documentation Standards
+
+## Directory Structure
+- `docs/commands/` - Contains documentation for standard workflows
+- `docs/reviews/` - Contains dated code review documentation
+
+## Code Review Documentation
+When changes are made, document findings in `docs/reviews/YYYY-MM-DD_HH_MM_SS_REVIEW.md`
+
+### Review Checklist
+Per [code_review.md](mdc:docs/commands/code_review.md), reviews should cover:
+
+1. **Impact Analysis**: Ensure changes don't affect existing dashboards
+2. **Best Practices**: Verify adherence to project standards
+3. **Bug Detection**: Look for obvious bugs or issues
+4. **Data Alignment**: Check for data format mismatches (snake_case vs camelCase, object structures)
+5. **Over-Engineering**: Identify files that are too large and need refactoring
+6. **Redundancies**: Find and simplify redundant code
+7. **Readability**: Identify opportunities for simplification
+8. **Style Consistency**: Ensure syntax matches the rest of the codebase
+
+### Review Document Format
+```markdown
+# Code Review - YYYY-MM-DD-HH-MM-SS
+
+## Summary
+Brief overview of changes
+
+## Detailed Findings
+
+### Category 1
+- Finding 1
+- Finding 2
+
+### Category 2
+- Finding 1
+
+## Recommendations
+- Recommendation 1
+- Recommendation 2
+
+## Conclusion
+Overall assessment
+```
+
+## Command Documentation
+Store reusable command patterns in `docs/commands/` with clear instructions and examples.
+
+## Markdown Best Practices
+- Use proper headers (H1 for title, H2 for sections, H3 for subsections)
+- Use code blocks with language specification
+- Use lists for structured information
+- Include dates in review documentation filenames

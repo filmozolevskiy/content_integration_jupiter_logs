@@ -1,0 +1,116 @@
+---
+globs: "*.view.lkml"
+---
+# LookML SQL Patterns and Best Practices
+
+## Field References
+Always use Looker field references instead of hardcoded column names:
+
+```lkml
+# Good
+sql: ${TABLE}.column_name ;;
+sql: ${dimension_name} ;;
+
+# Bad
+sql: table.column_name ;;
+```
+
+## NULL Handling
+
+### Division by Zero Prevention
+Always use `NULLIF` when dividing:
+```lkml
+measure: rate {
+  type: number
+  sql: ${numerator} / NULLIF(${denominator}, 0) ;;
+}
+```
+
+### NULL in Conditions
+```lkml
+dimension: is_populated {
+  type: yesno
+  sql: (NULLIF(TRIM(${TABLE}.field), '') IS NOT NULL) ;;
+}
+```
+
+## String Normalization
+For case-insensitive filtering and consistency:
+```lkml
+dimension: currency {
+  sql:
+    CASE
+      WHEN upperUTF8(trim(${TABLE}.currency)) IN ('USD','CAD','GBP')
+        THEN upperUTF8(trim(${TABLE}.currency))
+      ELSE 'Other'
+    END ;;
+}
+```
+
+## Derived Tables
+
+### Parameters in SQL
+Use Looker parameters with `{% %}` syntax:
+```lkml
+derived_table: {
+  sql:
+    SELECT *
+    FROM table
+    WHERE date_column > {% parameter start_date %}
+    ;;
+}
+```
+
+### SQL Formatting
+- Use proper indentation for readability
+- Add comments for complex logic
+- Break long CASE statements into multiple lines
+
+## CASE Statement Patterns
+
+### Boolean Logic
+```lkml
+dimension: is_condition {
+  type: yesno
+  sql: (${field1} = 'value' AND NOT ${is_other_condition}) ;;
+}
+```
+
+### Multi-Condition Mapping
+```lkml
+dimension: category {
+  sql:
+    CASE
+      WHEN ${field1} IN ('A','B') THEN 'Type1'
+      WHEN ${field2} = 'C' THEN 'Type2'
+      ELSE ${field3}
+    END ;;
+}
+```
+
+## JSON Extraction
+For ClickHouse databases with JSON fields:
+```lkml
+dimension: json_field {
+  sql: JSONExtractString(${TABLE}.json_column, 'key_name') ;;
+}
+```
+
+## Performance Considerations
+- Filter early in derived tables to reduce data volume
+- Use appropriate indexes in the base table (though we have read-only access)
+- Consider caching strategies for expensive queries
+- Use persistent derived tables when appropriate
+
+## Response Time Handling
+Handle cases where response time should be 0 for non-success:
+```lkml
+dimension: response_time {
+  sql:
+    CASE
+      WHEN ${response} != 'success' THEN 0
+      WHEN ${TABLE}.response_time IS NULL THEN 0
+      ELSE ${TABLE}.response_time
+    END ;;
+}
+```

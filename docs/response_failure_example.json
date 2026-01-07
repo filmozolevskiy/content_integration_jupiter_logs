@@ -1,0 +1,184 @@
+{
+    "status": 409,
+    "headers": {
+        "content-type": "application/json",
+        "x-momentum-api-authorization": "APIKEY"
+    },
+    "body": {
+        "error_code": 0,
+        "error_message": "expired",
+        "error_details": {
+            "internal": {
+                "description": "Momentum's internal debug information",
+                "information": null,
+                "trace": [
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/App/AirTripCancel.php(287) Momentum_WebServices_App_AirTripCancel->getValidOptionRecords()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Page.php(1058) Momentum_WebServices_App_AirTripCancel->actionProcess()",
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/Auth/Controller/Page.php(153) Solar_Controller_Page->_runAction()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Page.php(894) Momentum_WebServices_Auth_Controller_Page->_runAction()",
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/ActionException.php(60) Solar_Controller_Page->{closure}()",
+                    "/home/web1/git/travel/solar/vendor/flighthub/php-apm/src/Tracers/Abstracts/AbstractTracer.php(60) call_user_func()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Page.php(882) FlightHub\\Apm\\Tracers\\Abstracts\\AbstractTracer->trace()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Page.php(336) Solar_Controller_Page->_forward()",
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/ActionException.php(60) Solar_Controller_Page->{closure}()",
+                    "/home/web1/git/travel/solar/vendor/flighthub/php-apm/src/Tracers/Abstracts/AbstractTracer.php(60) call_user_func()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Page.php(334) FlightHub\\Apm\\Tracers\\Abstracts\\AbstractTracer->trace()",
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/Jupiter/Page.php(130) Solar_Controller_Page->fetch()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Front.php(135) Momentum_WebServices_Jupiter_Page->fetch()",
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/ActionException.php(60) Solar_Controller_Front::{closure}()",
+                    "/home/web1/git/travel/solar/vendor/flighthub/php-apm/src/Tracers/Abstracts/AbstractTracer.php(60) call_user_func()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Front.php(133) FlightHub\\Apm\\Tracers\\Abstracts\\AbstractTracer->trace()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Front.php(150) Solar_Controller_Front->fetch()",
+                    "/home/web1/git/travel/solar/http.php(76) Solar_Controller_Front->display()",
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/ActionException.php(60) {closure}()",
+                    "/home/web1/git/travel/solar/vendor/flighthub/php-apm/src/Tracers/Abstracts/AbstractTracer.php(60) call_user_func()",
+                    "/home/web1/git/travel/solar/http.php(74) FlightHub\\Apm\\Tracers\\Abstracts\\AbstractTracer->trace()",
+                    "/home/web1/git/travel/docroots/http.php(3) require(.)",
+                    "/home/web1/git/travel/docroots/momentum_webservices/index.php(19) require(.)"
+                ]
+            }
+        }
+    }
+}
+
+
+{
+    "status": 422,
+    "headers": {
+        "content-type": "application/json",
+        "x-momentum-api-authorization": "APIKEY"
+    },
+    "body": {
+        "error_code": 0,
+        "error_message": "quote_expired",
+        "error_details": {
+            "internal": {
+                "description": "Momentum's internal debug information",
+                "information": null,
+                "trace": [
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/App/AirTripHandlingFeeCharge.php(87) Momentum_WebServices_App_AirTripHandlingFeeCharge->getRequestHandlingFeeChargeQuote()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Page.php(1058) Momentum_WebServices_App_AirTripHandlingFeeCharge->actionCreate()",
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/Auth/Controller/Page.php(153) Solar_Controller_Page->_runAction()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Page.php(894) Momentum_WebServices_Auth_Controller_Page->_runAction()",
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/ActionException.php(60) Solar_Controller_Page->{closure}()",
+                    "/home/web1/git/travel/solar/vendor/flighthub/php-apm/src/Tracers/Abstracts/AbstractTracer.php(60) call_user_func()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Page.php(882) FlightHub\\Apm\\Tracers\\Abstracts\\AbstractTracer->trace()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Page.php(336) Solar_Controller_Page->_forward()",
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/ActionException.php(60) Solar_Controller_Page->{closure}()",
+                    "/home/web1/git/travel/solar/vendor/flighthub/php-apm/src/Tracers/Abstracts/AbstractTracer.php(60) call_user_func()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Page.php(334) FlightHub\\Apm\\Tracers\\Abstracts\\AbstractTracer->trace()",
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/Jupiter/Page.php(130) Solar_Controller_Page->fetch()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Front.php(135) Momentum_WebServices_Jupiter_Page->fetch()",
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/ActionException.php(60) Solar_Controller_Front::{closure}()",
+                    "/home/web1/git/travel/solar/vendor/flighthub/php-apm/src/Tracers/Abstracts/AbstractTracer.php(60) call_user_func()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Front.php(133) FlightHub\\Apm\\Tracers\\Abstracts\\AbstractTracer->trace()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Front.php(150) Solar_Controller_Front->fetch()",
+                    "/home/web1/git/travel/solar/http.php(76) Solar_Controller_Front->display()",
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/ActionException.php(60) {closure}()",
+                    "/home/web1/git/travel/solar/vendor/flighthub/php-apm/src/Tracers/Abstracts/AbstractTracer.php(60) call_user_func()",
+                    "/home/web1/git/travel/solar/http.php(74) FlightHub\\Apm\\Tracers\\Abstracts\\AbstractTracer->trace()",
+                    "/home/web1/git/travel/docroots/http.php(3) require(.)",
+                    "/home/web1/git/travel/docroots/momentum_webservices/index.php(19) require(.)"
+                ]
+            }
+        }
+    }
+}
+
+{
+    "status": 403,
+    "headers": {
+        "content-type": "application/json",
+        "x-momentum-api-authorization": "APIKEY"
+    },
+    "body": {
+        "error_code": 0,
+        "error_message": "no_ticket",
+        "error_details": {
+            "bookingId": 287179041,
+            "passengerId": 430757111,
+            "workOrderType": "ssr/replace-gender",
+            "reason": "no_ticket",
+            "workOrderId": null,
+            "internal": {
+                "description": "Momentum's internal debug information",
+                "information": null,
+                "trace": [
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/App/AirTripSsr.php(192) Momentum_WebServices_App_AirTripSsr->validateAvailabilities()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Page.php(1058) Momentum_WebServices_App_AirTripSsr->actionReplaceGender()",
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/Auth/Controller/Page.php(153) Solar_Controller_Page->_runAction()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Page.php(894) Momentum_WebServices_Auth_Controller_Page->_runAction()",
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/ActionException.php(60) Solar_Controller_Page->{closure}()",
+                    "/home/web1/git/travel/solar/vendor/flighthub/php-apm/src/Tracers/Abstracts/AbstractTracer.php(59) call_user_func()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Page.php(882) FlightHub\\Apm\\Tracers\\Abstracts\\AbstractTracer->trace()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Page.php(336) Solar_Controller_Page->_forward()",
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/ActionException.php(60) Solar_Controller_Page->{closure}()",
+                    "/home/web1/git/travel/solar/vendor/flighthub/php-apm/src/Tracers/Abstracts/AbstractTracer.php(59) call_user_func()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Page.php(334) FlightHub\\Apm\\Tracers\\Abstracts\\AbstractTracer->trace()",
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/Jupiter/Page.php(130) Solar_Controller_Page->fetch()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Front.php(135) Momentum_WebServices_Jupiter_Page->fetch()",
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/ActionException.php(60) Solar_Controller_Front::{closure}()",
+                    "/home/web1/git/travel/solar/vendor/flighthub/php-apm/src/Tracers/Abstracts/AbstractTracer.php(59) call_user_func()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Front.php(133) FlightHub\\Apm\\Tracers\\Abstracts\\AbstractTracer->trace()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Front.php(150) Solar_Controller_Front->fetch()",
+                    "/home/web1/git/travel/solar/http.php(76) Solar_Controller_Front->display()",
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/ActionException.php(60) {closure}()",
+                    "/home/web1/git/travel/solar/vendor/flighthub/php-apm/src/Tracers/Abstracts/AbstractTracer.php(59) call_user_func()",
+                    "/home/web1/git/travel/solar/http.php(74) FlightHub\\Apm\\Tracers\\Abstracts\\AbstractTracer->trace()",
+                    "/home/web1/git/travel/docroots/http.php(3) require(.)",
+                    "/home/web1/git/travel/docroots/momentum_webservices/index.php(19) require(.)"
+                ]
+            }
+        }
+    }
+}
+
+{
+    "status": 400,
+    "headers": {
+        "content-type": "application/json",
+        "x-momentum-api-authorization": "APIKEY"
+    },
+    "body": {
+        "error_code": 0,
+        "error_message": "invalid_requested_itinerary_changes",
+        "error_details": {
+            "error": "Airport not found in database: YYS",
+            "internal": {
+                "description": "Momentum's internal debug information",
+                "information": null,
+                "trace": [
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/Traits/HandlesItineraryChanges.php(70) Momentum_WebServices_App_AirTripChangeFlight->throwInvalidRequestedItineraryChanges()",
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/Traits/HandlesItineraryChanges.php(19) Momentum_WebServices_App_AirTripChangeFlight->getItineraryChanges()",
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/ActionException.php(60) Momentum_WebServices_App_AirTripChangeFlight->{closure}()",
+                    "/home/web1/git/travel/solar/vendor/illuminate/collections/Arr.php(749) array_map()",
+                    "/home/web1/git/travel/solar/vendor/illuminate/collections/Collection.php(805) Illuminate\\Support\\Arr::map()",
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/Traits/HandlesItineraryChanges.php(19) Illuminate\\Support\\Collection->map()",
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/App/AirTripChangeFlight.php(158) Momentum_WebServices_App_AirTripChangeFlight->getTripItineraryChanges()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Page.php(1058) Momentum_WebServices_App_AirTripChangeFlight->actionCheck()",
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/Auth/Controller/Page.php(153) Solar_Controller_Page->_runAction()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Page.php(894) Momentum_WebServices_Auth_Controller_Page->_runAction()",
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/ActionException.php(60) Solar_Controller_Page->{closure}()",
+                    "/home/web1/git/travel/solar/vendor/flighthub/php-apm/src/Tracers/Abstracts/AbstractTracer.php(60) call_user_func()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Page.php(882) FlightHub\\Apm\\Tracers\\Abstracts\\AbstractTracer->trace()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Page.php(336) Solar_Controller_Page->_forward()",
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/ActionException.php(60) Solar_Controller_Page->{closure}()",
+                    "/home/web1/git/travel/solar/vendor/flighthub/php-apm/src/Tracers/Abstracts/AbstractTracer.php(60) call_user_func()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Page.php(334) FlightHub\\Apm\\Tracers\\Abstracts\\AbstractTracer->trace()",
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/Jupiter/Page.php(130) Solar_Controller_Page->fetch()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Front.php(135) Momentum_WebServices_Jupiter_Page->fetch()",
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/ActionException.php(60) Solar_Controller_Front::{closure}()",
+                    "/home/web1/git/travel/solar/vendor/flighthub/php-apm/src/Tracers/Abstracts/AbstractTracer.php(60) call_user_func()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Front.php(133) FlightHub\\Apm\\Tracers\\Abstracts\\AbstractTracer->trace()",
+                    "/home/web1/git/travel/solar/include/Solar/Controller/Front.php(150) Solar_Controller_Front->fetch()",
+                    "/home/web1/git/travel/solar/http.php(76) Solar_Controller_Front->display()",
+                    "/home/web1/git/travel/solar/include/Momentum/WebServices/ActionException.php(60) {closure}()",
+                    "/home/web1/git/travel/solar/vendor/flighthub/php-apm/src/Tracers/Abstracts/AbstractTracer.php(60) call_user_func()",
+                    "/home/web1/git/travel/solar/http.php(74) FlightHub\\Apm\\Tracers\\Abstracts\\AbstractTracer->trace()",
+                    "/home/web1/git/travel/docroots/http.php(3) require(.)",
+                    "/home/web1/git/travel/docroots/momentum_webservices/index.php(19) require(.)"
+                ]
+            }
+        }
+    }
+}
