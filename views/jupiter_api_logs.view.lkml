@@ -11,7 +11,6 @@ view: jupiter_api_logs {
           action,
           username,
           http_code,
-          transaction_group_id,
           timestamp,
           request,
           response
@@ -81,7 +80,6 @@ view: jupiter_api_logs {
         b.action,
         b.username,
         b.http_code,
-        b.transaction_group_id,
         b.timestamp,
         r.request_method,
         r.request_host,
@@ -159,14 +157,6 @@ view: jupiter_api_logs {
     group_label: "1. Basic Dimensions"
     label: "HTTP Code"
     description: "HTTP status code from the table"
-  }
-
-  dimension: transaction_group_id {
-    type: string
-    sql: ${TABLE}.transaction_group_id ;;
-    group_label: "1. Basic Dimensions"
-    label: "Transaction Group ID"
-    description: "Transaction group identifier for grouping related requests"
   }
 
   dimension_group: timestamp {
@@ -533,14 +523,6 @@ view: jupiter_api_logs {
     group_label: "6. Measures"
     label: "Distinct Request Paths"
     description: "Distinct count of API paths"
-  }
-
-  measure: distinct_transaction_groups {
-    type: count_distinct
-    sql: ${transaction_group_id} ;;
-    group_label: "6. Measures"
-    label: "Distinct Transaction Groups"
-    description: "Distinct count of transaction group IDs"
   }
 
   measure: count_by_error_code {

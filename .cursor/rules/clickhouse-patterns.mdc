@@ -4,7 +4,22 @@ globs: "*.view.lkml"
 # ClickHouse Database Patterns
 
 ## Database Context
-This project uses ClickHouse as the data warehouse (connection: "ota_phoenix"). We have **read-only access**.
+This project uses ClickHouse as the data warehouse (connection: "ota_phoenix"). We have **read-only access** with **column-level permissions**.
+
+### Column-Level Permissions
+**CRITICAL**: ClickHouse enforces column-level SELECT permissions. Always verify which columns you have access to before querying.
+
+**Common Error**: `ACCESS_DENIED: Not enough privileges. To execute this query, it's necessary to have the grant SELECT(column1, column2, ...) ON table_name.`
+
+**Solution**: 
+- Only SELECT columns that are explicitly granted in your permissions
+- Remove any columns from SELECT statements that are not in the permission list
+- If a column is needed but not available, work with database administrators to grant access
+
+**Best Practice**: 
+- Test queries with minimal column selection first
+- Document which columns are available for each table
+- Never use `SELECT *` - always specify column names explicitly
 
 ## ClickHouse-Specific Functions
 
@@ -80,3 +95,34 @@ WHEN ${TABLE}.field IN ('value1', 'value2', 'value3') THEN 'category'
 - Specify only needed columns
 - Use WHERE clauses to limit data scanned
 - Consider the impact of CASE statements on query performance
+
+## ClickHouse-Specific Query Requirements
+
+### Always Use ClickHouse Functions
+- Use `JSONExtractString()`, `JSONExtractRaw()`, `JSONExtractArrayRaw()` for JSON operations
+- Use `toString()`, `toInt32OrZero()`, `toInt64OrZero()`, `toFloat64OrZero()` for type conversions
+- Use `ifNull()` instead of `COALESCE()` for better ClickHouse compatibility
+- Use `cityHash64()` for hash functions
+- Use `length()` for array/string length checks
+
+### String Concatenation
+- Use `||` operator for string concatenation (ClickHouse native)
+- Example: `toString(timestamp) || '_' || toString(cityHash64(request))`
+
+### Array Operations
+- Use `JSONExtractArrayRaw()` to extract JSON arrays
+- Access array elements with `[index]` (1-based indexing)
+- Always check array length before accessing elements: `if(length(array) > 0, array[1], default_value)`
+
+### Conditional Logic
+- Use `if(condition, then_value, else_value)` for conditional expressions
+- Use `ifNull(value, default)` for NULL handling
+- Use `JSONHas(json, 'key')` to check for JSON key existence before extraction
+
+### Example Pattern
+```sql
+-- ClickHouse-specific JSON extraction with safety checks
+if(JSONHas(JSONExtractRaw(response, 'headers'), 'x-execution-time'),
+   toFloat64OrZero(JSONExtractString(JSONExtractRaw(response, 'headers'), 'x-execution-time')),
+   0.0) AS response_x_execution_time
+```
