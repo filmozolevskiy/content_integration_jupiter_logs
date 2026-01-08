@@ -3,9 +3,9 @@ view: jupiter_api_logs {
   # Derived Table with CTEs for JSON extraction
   # base_cte computes ID once and includes request/response JSON for other CTEs to extract from
   derived_table: {
-    sql: 
+    sql:
       WITH base_cte AS (
-        SELECT 
+        SELECT
           toString(timestamp) || '_' || toString(cityHash64(request)) || '_' || toString(cityHash64(response)) AS id,
           controller,
           action,
@@ -16,9 +16,10 @@ view: jupiter_api_logs {
           request,
           response
         FROM jupiter.jupiter_api_logs
+        WHERE timestamp > now() - interval 1 month
       ),
       request_cte AS (
-        SELECT 
+        SELECT
           id,
           JSONExtractString(request, 'method') AS request_method,
           JSONExtractString(request, 'host') AS request_host,
@@ -37,7 +38,7 @@ view: jupiter_api_logs {
         FROM base_cte
       ),
       response_meta_cte AS (
-        SELECT 
+        SELECT
           id,
           toInt32OrZero(JSONExtractString(response, 'status')) AS response_status,
           JSONExtractString(JSONExtractRaw(response, 'headers'), 'content-type') AS response_content_type,
@@ -54,7 +55,7 @@ view: jupiter_api_logs {
         WHERE JSONHas(response, 'status')
       ),
       response_body_data_cte AS (
-        SELECT 
+        SELECT
           id,
           if(length(JSONExtractArrayRaw(JSONExtractRaw(JSONExtractRaw(response, 'body'), 'data'))) > 0,
              toInt64OrZero(JSONExtractString(JSONExtractArrayRaw(JSONExtractRaw(JSONExtractRaw(response, 'body'), 'data'))[1], 'bookingId')),
@@ -63,7 +64,7 @@ view: jupiter_api_logs {
         WHERE JSONHas(response, 'body') AND JSONHas(JSONExtractRaw(response, 'body'), 'data')
       ),
       response_body_error_cte AS (
-        SELECT 
+        SELECT
           id,
           toInt32OrZero(JSONExtractString(JSONExtractRaw(response, 'body'), 'error_code')) AS error_code,
           JSONExtractString(JSONExtractRaw(response, 'body'), 'error_message') AS error_message,
@@ -75,7 +76,7 @@ view: jupiter_api_logs {
         FROM base_cte
         WHERE JSONHas(response, 'body') AND JSONHas(JSONExtractRaw(response, 'body'), 'error_code')
       )
-      SELECT 
+      SELECT
         b.id,
         b.controller,
         b.action,
