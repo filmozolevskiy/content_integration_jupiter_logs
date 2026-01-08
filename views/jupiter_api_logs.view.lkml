@@ -485,22 +485,20 @@ view: jupiter_api_logs {
 
   measure: max_execution_time {
     type: number
-    sql: MAX(${response_x_execution_time}) ;;
-    filters: [response_x_execution_time: ">0"]
+    sql: MAX(CASE WHEN ${response_x_execution_time} > 0 THEN ${response_x_execution_time} ELSE NULL END) ;;
     value_format_name: decimal_4
     group_label: "6. Measures"
     label: "Max Execution Time"
-    description: "Maximum execution time in seconds (excluding NULLs)"
+    description: "Maximum execution time in seconds (excluding NULLs and zeros)"
   }
 
   measure: min_execution_time {
     type: number
-    sql: MIN(${response_x_execution_time}) ;;
-    filters: [response_x_execution_time: ">0"]
+    sql: MIN(CASE WHEN ${response_x_execution_time} > 0 THEN ${response_x_execution_time} ELSE NULL END) ;;
     value_format_name: decimal_4
     group_label: "6. Measures"
     label: "Min Execution Time"
-    description: "Minimum execution time in seconds (excluding NULLs)"
+    description: "Minimum execution time in seconds (excluding NULLs and zeros)"
   }
 
   measure: distinct_controllers {

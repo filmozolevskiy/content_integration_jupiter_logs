@@ -84,12 +84,41 @@ Organize measures by category:
 - Use `value_format_name: percent_2` for percentages
 
 ### Filtered Measures
+**IMPORTANT**: `filters:` can only be used with aggregate measure types (`count`, `sum`, `average`, `count_distinct`). It cannot be used with `type: number` measures that use custom SQL.
+
+**For aggregate measures:**
 ```lkml
 measure: filtered_count {
   type: count
   filters: [dimension_name: "value"]
   label: "Descriptive Label"
   group_label: "Volume"
+}
+```
+
+**For custom SQL measures (type: number):**
+Use CASE statements within the SQL to handle filtering:
+```lkml
+measure: max_value {
+  type: number
+  sql: MAX(CASE WHEN ${dimension_name} > 0 THEN ${dimension_name} ELSE NULL END) ;;
+  label: "Max Value"
+}
+```
+
+**DO NOT use filters on type: number measures:**
+```lkml
+# ❌ WRONG - Will cause validation error
+measure: max_value {
+  type: number
+  sql: MAX(${dimension_name}) ;;
+  filters: [dimension_name: ">0"]  # NOT ALLOWED
+}
+
+# ✅ CORRECT - Use CASE in SQL
+measure: max_value {
+  type: number
+  sql: MAX(CASE WHEN ${dimension_name} > 0 THEN ${dimension_name} ELSE NULL END) ;;
 }
 ```
 
