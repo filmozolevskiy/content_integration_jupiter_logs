@@ -151,6 +151,7 @@ view: jupiter_api_logs {
     group_label: "1. Basic Dimensions"
     label: "Username"
     description: "Username associated with the API request"
+    hidden: yes
   }
 
   dimension: http_code {
@@ -188,6 +189,7 @@ view: jupiter_api_logs {
     group_label: "2. Request Dimensions"
     label: "Method"
     description: "HTTP method from the request (GET, POST, etc.)"
+    hidden: yes
   }
 
   dimension: request_host {
@@ -220,6 +222,7 @@ view: jupiter_api_logs {
     group_label: "2. Request Dimensions"
     label: "User Agent"
     description: "User agent string from request headers"
+    hidden: yes
   }
 
   dimension: request_accept {
@@ -228,6 +231,7 @@ view: jupiter_api_logs {
     group_label: "2. Request Dimensions"
     label: "Accept"
     description: "Accept header from request headers"
+    hidden: yes
   }
 
   dimension: request_x_geo_country_code {
@@ -252,6 +256,7 @@ view: jupiter_api_logs {
     group_label: "2. Request Dimensions"
     label: "City"
     description: "City from geo headers (x-geo-city)"
+    hidden: yes
   }
 
   dimension: request_x_geo_isp {
@@ -268,6 +273,7 @@ view: jupiter_api_logs {
     group_label: "2. Request Dimensions"
     label: "Connection Type"
     description: "Connection type from geo headers (x-geo-connection-type)"
+    hidden: yes
   }
 
   dimension: request_query {
@@ -276,6 +282,7 @@ view: jupiter_api_logs {
     group_label: "2. Request Dimensions"
     label: "Query"
     description: "Query parameters from request (JSON array)"
+    hidden: yes
   }
 
   dimension: request_form {
@@ -284,6 +291,7 @@ view: jupiter_api_logs {
     group_label: "2. Request Dimensions"
     label: "Form"
     description: "Form data from request (JSON array)"
+    hidden: yes
   }
 
   dimension: request_json {
@@ -329,6 +337,7 @@ view: jupiter_api_logs {
     group_label: "3. Response Meta Dimensions"
     label: "Memory Peak Usage"
     description: "Memory peak usage from response headers (x-memory-peak-usage)"
+    hidden: yes
   }
 
   dimension: response_x_momentum_api_authorization {
@@ -337,6 +346,7 @@ view: jupiter_api_logs {
     group_label: "3. Response Meta Dimensions"
     label: "API Authorization"
     description: "API authorization type from response headers (x-momentum-api-authorization)"
+    hidden: yes
   }
 
   dimension: is_success {
