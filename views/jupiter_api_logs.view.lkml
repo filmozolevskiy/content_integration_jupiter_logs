@@ -16,7 +16,7 @@ view: jupiter_api_logs {
           request,
           response
         FROM jupiter.jupiter_api_logs
-        WHERE timestamp > now() - interval 1 day
+        WHERE timestamp > now() - interval 31 day
       ),
       request_cte AS (
         SELECT
