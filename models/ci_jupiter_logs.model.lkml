@@ -1,4 +1,4 @@
-connection: "ota_phoenix"
+connection: "clickhouse-jupiter"
 
 include: "/views/**/*.view.lkml"
 
