@@ -92,6 +92,7 @@ view: jupiter_api_logs {
     group_label: "2. Request Dimensions"
     label: "Path"
     description: "API path from the request"
+    hidden: yes
   }
 
   dimension: request_x_request_id {
@@ -151,6 +152,7 @@ view: jupiter_api_logs {
     group_label: "2. Request Dimensions"
     label: "ISP"
     description: "ISP from geo headers (x-geo-isp)"
+    hidden: yes
   }
 
   dimension: request_x_geo_connection_type {
@@ -186,6 +188,7 @@ view: jupiter_api_logs {
     group_label: "2. Request Dimensions"
     label: "JSON"
     description: "JSON body from request (JSON array)"
+    hidden: yes
   }
 
   # -------------------------
@@ -206,6 +209,7 @@ view: jupiter_api_logs {
     group_label: "3. Response Meta Dimensions"
     label: "Content Type"
     description: "Content type from response headers"
+    hidden: yes
   }
 
   dimension: response_x_execution_time {
