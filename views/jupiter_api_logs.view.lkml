@@ -29,6 +29,7 @@ view: jupiter_api_logs {
     group_label: "1. Basic Dimensions"
     label: "Action"
     description: "Action name within the controller"
+    suggestions: ["abort", "add", "calculate", "check", "create", "make-primary", "process", "quote", "replace-date-of-birth", "replace-disability-indicators", "replace-gender", "rules", "search", "trip-serviceability"]
   }
 
   dimension: username {
