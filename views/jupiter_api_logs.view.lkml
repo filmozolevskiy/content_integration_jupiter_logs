@@ -44,7 +44,7 @@ view: jupiter_api_logs {
     type: number
     sql: ${TABLE}.http_code ;;
     group_label: "1. Basic Dimensions"
-    label: "HTTP Code"
+    label: "Status"
     description: "HTTP status code from the table"
   }
 
@@ -202,6 +202,7 @@ view: jupiter_api_logs {
     group_label: "3. Response Meta Dimensions"
     label: "Status"
     description: "HTTP status code from response"
+    hidden: yes
   }
 
   dimension: response_content_type {
