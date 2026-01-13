@@ -101,6 +101,7 @@ view: jupiter_api_logs {
     group_label: "2. Request Dimensions"
     label: "Request ID"
     description: "Request ID from request headers (x-request-id)"
+    hidden: yes
   }
 
   dimension: request_user_agent {
