@@ -196,13 +196,15 @@ view: jupiter_api_logs {
   dimension: request_booking_id {
     type: number
     sql: COALESCE(
+            if(length(JSONExtractArrayRaw(JSONExtractRaw(${TABLE}.request, 'json'), 'parameters')) > 0,
+               toInt64OrZero(JSONExtractString(JSONExtractArrayRaw(JSONExtractRaw(${TABLE}.request, 'json'), 'parameters')[1], 'bookingId')),
+               0),
             toInt64OrZero(JSONExtractString(JSONExtractRaw(JSONExtractRaw(${TABLE}.request, 'json'), 'tripItineraryChanges'), 'bookingId')),
-            toInt64OrZero(JSONExtractString(JSONExtractArrayRaw(JSONExtractRaw(${TABLE}.request, 'json'), 'parameters')[1], 'bookingId')),
             0
           ) ;;
     group_label: "2. Request Dimensions"
     label: "Booking ID"
-    description: "Booking ID from request (extracted from json.tripItineraryChanges.bookingId or json.parameters[0].bookingId)"
+    description: "Booking ID from request (extracted from json.parameters[0].bookingId or json.tripItineraryChanges.bookingId)"
   }
 
   # -------------------------
