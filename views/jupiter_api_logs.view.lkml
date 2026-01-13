@@ -191,7 +191,6 @@ view: jupiter_api_logs {
     group_label: "2. Request Dimensions"
     label: "JSON"
     description: "JSON body from request (JSON array)"
-    hidden: yes
   }
 
   dimension: request_booking_id {
