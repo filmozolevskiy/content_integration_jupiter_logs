@@ -128,6 +128,7 @@ view: jupiter_api_logs {
     group_label: "2. Request Dimensions"
     label: "Country Code"
     description: "Country code from geo headers (x-geo-country-code)"
+    hidden: yes
   }
 
   dimension: request_x_geo_country_name {
