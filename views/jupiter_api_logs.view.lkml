@@ -197,17 +197,13 @@ view: jupiter_api_logs {
   dimension: request_booking_id {
     type: number
     sql: COALESCE(
-            toInt64OrZero(JSONExtractString(JSONExtractRaw(${TABLE}.request, 'json'), 'bookingId')),
-            toInt64OrZero(JSONExtractString(JSONExtractRaw(${TABLE}.request, 'json'), 'booking_id')),
-            toInt64OrZero(JSONExtractString(JSONExtractRaw(${TABLE}.request, 'form'), 'bookingId')),
-            toInt64OrZero(JSONExtractString(JSONExtractRaw(${TABLE}.request, 'form'), 'booking_id')),
-            toInt64OrZero(JSONExtractString(JSONExtractRaw(${TABLE}.request, 'query'), 'bookingId')),
-            toInt64OrZero(JSONExtractString(JSONExtractRaw(${TABLE}.request, 'query'), 'booking_id')),
+            toInt64OrZero(JSONExtractString(JSONExtractRaw(JSONExtractRaw(${TABLE}.request, 'json'), 'tripItineraryChanges'), 'bookingId')),
+            toInt64OrZero(JSONExtractString(JSONExtractArrayRaw(JSONExtractRaw(${TABLE}.request, 'json'), 'parameters')[1], 'bookingId')),
             0
           ) ;;
     group_label: "2. Request Dimensions"
     label: "Booking ID"
-    description: "Booking ID from request (extracted from JSON body, form data, or query parameters)"
+    description: "Booking ID from request (extracted from json.tripItineraryChanges.bookingId or json.parameters[0].bookingId)"
   }
 
   # -------------------------
