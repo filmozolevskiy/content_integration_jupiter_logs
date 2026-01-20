@@ -57,6 +57,15 @@ view: jupiter_api_logs {
     description: "Transaction group identifier for grouping related requests"
   }
 
+  dimension: transaction_group_link {
+    type: string
+    sql: ${transaction_group_id} ;;
+    html: <a href="https://reservations.voyagesalacarte.ca/jupiter/log-group/{{ value }}" target="_blank">{{ rendered_value }}</a> ;;
+    group_label: "1. Basic Dimensions"
+    label: "Transaction Group Link"
+    description: "Clickable link to view transaction group details"
+  }
+
   dimension_group: timestamp {
     type: time
     timeframes: [raw, date, week, month, quarter, year]
