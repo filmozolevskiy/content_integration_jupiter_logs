@@ -207,6 +207,14 @@ view: jupiter_api_logs {
     description: "Booking ID from request (extracted from json.parameters[0].bookingId or json.tripItineraryChanges.bookingId)"
   }
 
+  dimension: request_raw {
+    type: string
+    sql: toString(${TABLE}.request) ;;
+    group_label: "2. Request Dimensions"
+    label: "Request Raw"
+    description: "Complete raw request JSON structure"
+  }
+
   # -------------------------
   # 3. Response Meta Dimensions
   # -------------------------
@@ -276,6 +284,14 @@ view: jupiter_api_logs {
     group_label: "3. Response Meta Dimensions"
     label: "Is Error"
     description: "Whether the response status indicates an error (4xx or 5xx)"
+  }
+
+  dimension: response_raw {
+    type: string
+    sql: toString(${TABLE}.response) ;;
+    group_label: "3. Response Meta Dimensions"
+    label: "Response Raw"
+    description: "Complete raw response JSON structure"
   }
 
   # -------------------------
