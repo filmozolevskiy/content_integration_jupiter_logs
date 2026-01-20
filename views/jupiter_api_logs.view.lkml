@@ -66,6 +66,14 @@ view: jupiter_api_logs {
     description: "Clickable link to view transaction group details"
   }
 
+  dimension: timestamp_raw {
+    type: string
+    sql: toString(${TABLE}.timestamp) ;;
+    group_label: "1. Basic Dimensions"
+    label: "Timestamp Raw"
+    description: "Raw timestamp value as string"
+  }
+
   dimension_group: timestamp {
     type: time
     timeframes: [raw, date, week, month, quarter, year]
