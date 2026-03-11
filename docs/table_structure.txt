@@ -1,12 +1,11 @@
-CREATE TABLE jupiter.jupiter_api_logs
+# Jupiter API Tags Table
+
+CREATE TABLE jupiter.jupiter_api_tags
 (
-    `controller` String,
-    `action` String,
     `username` String,
-    `http_code` UInt32,
-    `transaction_group_id` String,
-    `timestamp` DateTime,
-    `request` String,
-    `response` String
+    `trip_id` UInt32,
+    `booking_id` UInt32,
+    `labels` Array(String),
+    `timestamp` DateTime
 )
-ENGINE = Distributed('ota', 'jupiter', 'jupiter_api_logs_shard', rand())
+ENGINE = Distributed('ota', 'jupiter', 'jupiter_api_tags_shard', rand())
